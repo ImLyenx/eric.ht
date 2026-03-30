@@ -7,11 +7,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "start": "node dist/server/entry.mjs"
+    "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^10.0.4",
     "@fontsource/inter": "^5.0.0",
     "@iconify-json/carbon": "^1.0.0",
     "@iconify-json/logos": "^1.0.0",
