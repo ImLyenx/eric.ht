@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/PostLayout.astro
 title: VALORANT Clone
 tags:
   [
@@ -9,7 +8,7 @@ tags:
     { "name": "AIOHTTP", "color": "#2c5bb4", icon: "simple-icons:aiohttp" },
   ]
 description: Recreation of the VALORANT in-game interface (Main menu, Store, Collection, Career)
-demo: https://val.lyenx.com
+demo: https://val.eric.ht
 ---
 
 ## Context
@@ -36,7 +35,7 @@ The API itself is also protected by Cloudflare, so no attempt at accessing it wi
 
 So when I had my humble Python API working and Riot suddenly decided to nuke it by changing the Authentication methods on every single endpoint, I gave up. My app would now only be a React SPA that displays dummy data.
 
-If you want to check out my work (technically only half of it), you can do so [here](https://val.lyenx.com). You don't need a Riot account, simply press the red button without filling the input fields. Enjoy!
+If you want to check out my work (technically only half of it), you can do so [here](https://val.lyenx.com). You don't need a Riot Games account, simply press the red button without filling the input fields. Enjoy!
 
 ## What I learned
 

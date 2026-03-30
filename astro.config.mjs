@@ -1,17 +1,11 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import sectionize from "@hbsnow/rehype-sectionize";
-
 import icon from "astro-icon";
-
 import node from "@astrojs/node";
 
-// https://astro.build/config
 export default defineConfig({
-  output: "hybrid",
-
   integrations: [
-    tailwind(),
     icon({
       include: {
         carbon: ["*"],
@@ -25,4 +19,8 @@ export default defineConfig({
   markdown: { rehypePlugins: [sectionize] },
 
   adapter: node({ mode: "standalone" }),
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });

@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/PostLayout.astro
 title: Miscellaneous
 tags: [
     { "name": "PHP", "color": "#797ab2", icon: "simple-icons:php" },

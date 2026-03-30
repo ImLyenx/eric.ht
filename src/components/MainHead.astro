@@ -1,7 +1,7 @@
 ---
 const {
   title = "Default",
-  description = "If you want to find out about Lyenx's projects or social medias, this is the right place !",
+  description = "Eric Hubert's portfolio — Full-stack developer based near Paris.",
 } = Astro.props;
 ---
 
@@ -9,19 +9,17 @@ const {
 <meta name="description" property="og:description" content={description} />
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
-<title>{title + " - Lyenx"}</title>
+<title>{title + " - eric.ht"}</title>
 
 <link rel="icon" href="/logo.png" />
 <script is:inline>
-  // ☝️ This script prevent the FART effect.
+  // Prevent FART (Flash of inAccurate coloR Theme)
   if (localStorage.getItem("theme") === null) {
     document.documentElement.setAttribute("data-theme", "winter");
-  } else
+  } else {
     document.documentElement.setAttribute(
       "data-theme",
       localStorage.getItem("theme"),
     );
-  // "theme" LocalStorage value is set by the package to remember user preference.
-  // The value is checked and applyed before rendering anything.
+  }
 </script>
-<script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>

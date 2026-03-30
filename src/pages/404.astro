@@ -3,5 +3,9 @@ import MainLayout from "@/layouts/MainLayout.astro";
 ---
 
 <MainLayout title="404 Not Found">
-  <div>This page does not exist</div>
+  <div class="flex flex-col items-center justify-center py-24 text-center">
+    <h1 class="text-8xl font-extrabold text-primary">404</h1>
+    <p class="mt-4 text-xl text-base-content/60">This page does not exist.</p>
+    <a href="/" class="btn btn-primary mt-8">Go home</a>
+  </div>
 </MainLayout>

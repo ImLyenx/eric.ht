@@ -13,13 +13,13 @@ import { Icon } from "astro-icon/components";
     <div class="card-container grid gap-8 md:grid-cols-[repeat(2,1fr)]">
       {
         projectsEntries.map((entry) => (
-          <div class="card w-full shadow-2xl md:card-side">
+          <div class="card w-full shadow-2xl transition-all hover:-translate-y-1 hover:shadow-3xl md:card-side">
             <div class="card-body">
               <div class="flex justify-between">
                 <h2 class="card-title">
                   <a
                     class="font-extrabold underline underline-offset-4"
-                    href={`/projects/${entry.slug}`}
+                    href={`/projects/${entry.id}`}
                   >
                     {entry.data.title}
                   </a>
@@ -44,9 +44,9 @@ import { Icon } from "astro-icon/components";
                       class="tooltip tooltip-bottom tooltip-error cursor-not-allowed"
                       data-tip="This project is closed-source"
                     >
-                      <a href="#" class="btn btn-disabled btn-sm">
+                      <span class="btn btn-disabled btn-sm">
                         <Icon name="carbon:logo-github" class="text-xl" />
-                      </a>
+                      </span>
                     </div>
                   )}
                   {entry.data.demo ? (
@@ -68,9 +68,9 @@ import { Icon } from "astro-icon/components";
                       class="tooltip tooltip-bottom tooltip-error cursor-not-allowed"
                       data-tip="No demo available"
                     >
-                      <a href="#" class="btn btn-disabled btn-sm">
+                      <span class="btn btn-disabled btn-sm">
                         <Icon name="carbon:link" class="text-xl" />
-                      </a>
+                      </span>
                     </div>
                   )}
                 </div>

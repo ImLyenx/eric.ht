@@ -8,77 +8,87 @@ import { Icon } from "astro-icon/components";
 <nav class="sticky flex h-20 items-center pt-4">
   <a href="/" aria-label="Home">
     <div class="flex h-10 gap-1 text-3xl font-bold">
-      <!-- &#123; -->
       &lt;
-      <span class="text-4xl text-primary">Lyenx</span>
+      <span class="text-4xl text-primary">Eric</span>
       &ThickSpace;/&gt;
-      <!-- &#125; -->
     </div>
   </a>
 
-  <ul class="menu menu-horizontal ml-auto hidden gap-1 p-0 md:flex">
+  <div class="ml-auto hidden items-center gap-1 md:flex">
     {
       navItems.map(({ href, label }) => (
-        <li class="rounded-xl">
-          <a href={href} class="btn btn-ghost my-auto text-lg font-normal">
-            {label}
-          </a>
-        </li>
+        <a href={href} class="btn btn-ghost text-lg font-normal">
+          {label}
+        </a>
       ))
     }
     {
-      socialItems.map(({ href, label, icon }) => (
-        <li
-          class="tooltip tooltip-bottom tooltip-primary rounded-xl"
-          data-tip={label}
-        >
-          <a href={href} aria-label={label} class="btn btn-square btn-ghost">
-            <Icon name={icon} class="text-3xl" />
-          </a>
-        </li>
-      ))
+      socialItems.map(({ href, label, icon, copyEmail }) =>
+        copyEmail ? (
+          <div class="tooltip tooltip-bottom tooltip-primary" data-tip={label}>
+            <button aria-label={label} class="btn btn-square btn-ghost nav-copy-email">
+              <Icon name={icon} class="text-3xl" />
+            </button>
+          </div>
+        ) : (
+          <div class="tooltip tooltip-bottom tooltip-primary" data-tip={label}>
+            <a href={href} aria-label={label} class="btn btn-square btn-ghost">
+              <Icon name={icon} class="text-3xl" />
+            </a>
+          </div>
+        )
+      )
     }
-    <li class="rounded-xl"><ToggleTheme /></li>
-  </ul>
+    <ToggleTheme />
+  </div>
+
   <div class="dropdown dropdown-end ml-auto flex md:hidden">
-    <label tabindex="0" class="btn btn-square btn-ghost m-1 text-2xl"
-      ><Icon name="carbon:menu" class="text-3xl" /></label
-    >
+    <label tabindex="0" class="btn btn-square btn-ghost m-1 text-2xl">
+      <Icon name="carbon:menu" class="text-3xl" />
+    </label>
     <ul
       tabindex="0"
       class="menu dropdown-content z-[1] w-52 rounded-box bg-base-100 p-2 shadow-2xl"
     >
-      <ul class="menu menu-vertical">
+      {
+        navItems.map(({ href, label }) => (
+          <li>
+            <a href={href} class="text-lg">{label}</a>
+          </li>
+        ))
+      }
+      <li class="mt-2 flex flex-row items-center gap-1">
         {
-          navItems.map(({ href, label }) => (
-            <li>
-              <a href={href} class="text-lg">
-                {label}
+          socialItems.map(({ href, label, icon, copyEmail }) =>
+            copyEmail ? (
+              <button aria-label={label} class="btn btn-square btn-ghost btn-sm nav-copy-email">
+                <Icon name={icon} class="text-2xl" />
+              </button>
+            ) : (
+              <a href={href} aria-label={label} class="btn btn-square btn-ghost btn-sm">
+                <Icon name={icon} class="text-2xl" />
               </a>
-            </li>
-          ))
+            )
+          )
         }
-        <ul class="menu menu-horizontal">
-          {
-            socialItems.map(({ href, label, icon }) => (
-              <li
-                class="tooltip tooltip-bottom tooltip-primary"
-                data-tip={label}
-              >
-                <a href={href} class="btn btn-square btn-ghost">
-                  <Icon name={icon} class="text-3xl" />
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </ul>
-      <li class="menu menu-horizontal">
-        <ToggleTheme /><span class="pointer-events-none my-auto text-lg"
-          >Theme</span
-        >
+        <ToggleTheme class="btn-sm" />
       </li>
     </ul>
   </div>
 </nav>
 <div class="divider mt-0"></div>
+
+<div id="nav-toast" class="alert alert-success fixed bottom-8 left-4 z-50 w-auto hidden">
+  <span>Email copied to clipboard!</span>
+</div>
+
+<script>
+  document.querySelectorAll(".nav-copy-email").forEach((el) => {
+    el.addEventListener("click", () => {
+      navigator.clipboard.writeText("contact@eric.ht");
+      const toast = document.getElementById("nav-toast");
+      toast?.classList.remove("hidden");
+      setTimeout(() => toast?.classList.add("hidden"), 2000);
+    });
+  });
+</script>

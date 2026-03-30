@@ -11,7 +11,8 @@ export const socialItems = [
   },
   {
     label: "Contact",
-    href: "/contact",
+    href: "#",
     icon: "carbon:email",
+    copyEmail: true,
   },
 ];

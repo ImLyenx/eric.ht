@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/PostLayout.astro
 title: Mistral Chat
 tags:
   [
@@ -14,7 +13,6 @@ tags:
   ]
 description: A lightweight and minimalist web UI for the Mistral AI API.
 github: ImLyenx/mistral-chat
-demo: https://chat.lyenx.com
 ---
 
 ## Context
@@ -31,4 +29,4 @@ Anyways...
 
 ## What I learned
 
-Basically the fundamentals of LLM APIs and data streaming, and local data storage with IndexedDB. Overall a fun little project I'm really proud of despite its simplicity, 10/10, would recommend. Go try it out [here](https://chat.lyenx.com)! You will simply need a Mistral API key, which you can get for free by signing up on [their website](https://mistral.ai).
+Basically the fundamentals of LLM APIs and data streaming, and local data storage with IndexedDB. Overall a fun little project I'm really proud of despite its simplicity, 10/10, would recommend. ~~Go try it out [here](https://chat.eric.ht)! You will simply need a Mistral API key, which you can get for free by signing up on [their website](https://mistral.ai).~~ This project is no longer available due to a critical vulnerability in Next.js. I had to take it down and couldn't be bothered to update it.

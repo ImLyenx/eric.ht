@@ -6,87 +6,103 @@ import { skills } from "@/data/skills";
 ---
 
 <MainLayout title="Home">
-  <div id="header" class="flex flex-col md:flex-row">
-    <div
-      id="title"
-      class="flex max-w-5xl flex-col pt-8 align-bottom text-2xl md:pt-16"
+  <div class="flex max-w-5xl flex-col pt-8 text-2xl md:pt-16">
+    <span class="mb-3 text-2xl font-bold text-primary md:text-3xl">
+      Hey there, I'm-
+    </span>
+    <span
+      class="text-contrast text-7xl font-bold leading-[1] md:text-[10rem]"
     >
-      <span class="mb-3 text-2xl font-bold text-primary md:text-3xl"
-        >Hey there, I'm-
-      </span>
-      <span class="text-contrast text-7xl font-bold leading-[1] md:text-[10rem]"
-        >Eric Hubert.</span
-      >
-      <span class="mt-8 text-4xl md:pt-0 md:text-5xl"
-        >Also known as <span class="text-contrast font-bold">Lyenx.</span>
-      </span>
+      Eric Hubert.
+    </span>
 
-      <p class="mt-16 gap-2 text-2xl md:mt-24 md:text-3xl">
-        <span class="text-contrast font-bold">Full-stack developer,</span>
-        <span class="">student, musician, gamer, and all sorts of things.</span>
-      </p>
-      <div class="mt-16 flex gap-2">
-        {
-          socialItems.map(({ href, label, icon }) => (
+    <p class="mt-16 gap-2 text-2xl md:mt-24 md:text-3xl">
+      <span class="text-contrast font-bold">Full-stack developer,</span>
+      <span>student, musician, gamer, and all sorts of things.</span>
+    </p>
+    <div class="mt-16 flex gap-2">
+      {
+        socialItems.map(({ href, label, icon, copyEmail }) =>
+          copyEmail ? (
+            <button
+              id="copy-email"
+              class="btn btn-sm text-sm md:h-12 md:min-h-12 md:text-lg"
+            >
+              <Icon name={icon} class="text-base text-primary md:text-2xl" />
+              {label}
+            </button>
+          ) : (
             <a
               href={href}
-              class="btn btn-active btn-sm text-sm md:h-12 md:min-h-12 md:text-lg"
+              class="btn btn-sm text-sm md:h-12 md:min-h-12 md:text-lg"
             >
               <Icon name={icon} class="text-base text-primary md:text-2xl" />
               {label}
             </a>
-          ))
-        }
-      </div>
-      <div class="mt-24 flex flex-col gap-4">
-        <h2 class="text-contrast border-l-4 border-l-primary pl-4 font-bold">
-          About me
-        </h2>
-        <p class="text-lg">
-          I'm an 18 years old Full-stack web developer based near Paris.
-        </p>
-        <p class="text-lg">
-          I love coding, and computer-related things in general. I've been
-          coding since 2016, first by simply editing HTML files in Notepad, then
-          learning Scratch. More recently, I've been learning a few different
-          technologies, playing some CTFs and having fun with my friends!
-        </p>
-        <p class="text-lg">
-          I sometimes make cool things, you can learn more about them on the <a
-            href="/projects"
-            class="underline-offset-3 font-medium underline">projects</a
-          > page.
-        </p>
-        <p class="text-lg">
-          I am also always open to work, feel free to <a
-            href="/contact"
-            class="underline-offset-3 font-medium underline"
-            >send me a message</a
-          >!
-        </p>
-      </div>
-      <div class="mt-24 flex flex-col gap-6">
-        <h2 class="text-contrast border-l-4 border-l-primary pl-4 font-bold">
-          Tech I use
-        </h2>
-        {
-          skills.map(({ name, items }) => (
-            <div class="flex flex-col gap-3">
-              <h3 class="text-xl">&middot; {name} :</h3>
-              <div class="flex flex-wrap gap-4">
-                {items.map(({ label, icon }) => (
-                  <div
-                    class="tooltip tooltip-bottom tooltip-primary"
-                    data-tip={label}
-                  >
-                    <Icon name={icon} class="text-6xl" />
-                  </div>
-                ))}
-              </div>
+          )
+        )
+      }
+    </div>
+    <div id="toast" class="alert alert-success fixed bottom-8 left-4 z-50 w-auto hidden">
+      <span>Email copied to clipboard!</span>
+    </div>
+    <script>
+      function copyEmail() {
+        navigator.clipboard.writeText("contact@eric.ht");
+        const toast = document.getElementById("toast");
+        toast?.classList.remove("hidden");
+        setTimeout(() => toast?.classList.add("hidden"), 2000);
+      }
+      document.getElementById("copy-email")?.addEventListener("click", copyEmail);
+      document.querySelectorAll(".copy-email").forEach((el) => el.addEventListener("click", copyEmail));
+    </script>
+
+    <div class="mt-24 flex flex-col gap-4">
+      <h2 class="text-contrast border-l-4 border-l-primary pl-4 font-bold">
+        About me
+      </h2>
+      <p class="text-lg flex flex-wrap items-center">
+        I'm a 19 years old student based near Paris, currently working as an apprentice software engineer for&nbsp;<Icon name="simple-icons:scaleway" class="text-xl ml-1" />&nbsp;Scaleway
+      </p>
+      <p class="text-lg">
+        I love coding, and computer-related things in general. I've been
+        coding since 2016, first by simply editing HTML files in Notepad, then
+        learning Scratch. More recently, I've been learning a few different
+        technologies, playing some CTFs and having fun with my friends!
+      </p>
+      <p class="text-lg">
+        I sometimes make cool things, you can learn more about them on the <a
+          href="/projects"
+          class="underline-offset-3 font-medium underline">projects</a
+        > page.
+      </p>
+      <p class="text-lg">
+        I am also always open to work, feel free to
+        <button
+          class="underline-offset-3 copy-email cursor-pointer font-medium underline"
+        >send me a message</button>!
+      </p>
+    </div>
+
+    <div class="mt-24 flex flex-col gap-6">
+      <h2 class="text-contrast border-l-4 border-l-primary pl-4 font-bold">
+        Tech I use
+      </h2>
+      {
+        skills.map(({ name, items }) => (
+          <div class="flex flex-col gap-3">
+            <h3 class="text-xl">&middot; {name} :</h3>
+            <div class="flex flex-wrap gap-3">
+              {items.map(({ label, icon }) => (
+                <div class="flex items-center gap-2 rounded-lg border border-base-content/10 bg-base-200/40 px-3 py-2 transition-all hover:-translate-y-0.5 hover:border-primary/30">
+                  <Icon name={icon} class="text-3xl" />
+                  <span class="text-base font-medium">{label}</span>
+                </div>
+              ))}
             </div>
-          ))
-        }
-      </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </MainLayout>

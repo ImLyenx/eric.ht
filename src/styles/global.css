@@ -1,3 +1,39 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: winter --default, night --prefersdark;
+}
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where([data-theme="night"], [data-theme="night"] *));
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+
+  --animate-box-shadow: boxshadow 2s ease-in-out 2s;
+  --animate-content-fade: fade 0.6s ease;
+
+  @keyframes boxshadow {
+    0%, 100% { box-shadow: #463aa1 0px -1rem 0px inset; }
+    50% { box-shadow: #463aa1 0px -2.25rem 0px inset; }
+  }
+
+  @keyframes fade {
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0px); }
+  }
+}
+
+/* Theme customizations */
+[data-theme="winter"] {
+  --color-base-content: #222e3f;
+}
+
+[data-theme="night"] {
+  --color-base-100: #0d1221;
+  --color-primary: #5ce18c;
+}
+
 :root {
   --logo-image: url("/logowinter.png");
 }
@@ -25,16 +61,25 @@ option {
 }
 
 .magic {
-  @apply bg-gradient-to-r from-base-content to-success bg-clip-text text-transparent brightness-[.7];
+  background-image: linear-gradient(to right, var(--color-base-content), var(--color-success));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: brightness(0.7);
 }
 [data-theme="night"] .magic {
-  @apply bg-gradient-to-r from-base-content to-secondary bg-clip-text text-transparent brightness-100;
+  background-image: linear-gradient(to right, var(--color-base-content), var(--color-secondary));
+  filter: brightness(1);
 }
 
 .toc-link.active {
-  @apply underline underline-offset-4;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .text-contrast {
-  @apply text-black dark:text-white;
+  color: black;
+}
+[data-theme="night"] .text-contrast {
+  color: white;
 }
