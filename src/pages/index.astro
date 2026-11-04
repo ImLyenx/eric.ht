@@ -1,108 +1,30 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
 import { Icon } from "astro-icon/components";
-import { socialItems } from "@/data/socials";
-import { skills } from "@/data/skills";
+import { Image } from "astro:assets";
+import logo from "@/assets/logo.svg";
 ---
 
-<MainLayout title="Home">
-  <div class="flex max-w-5xl flex-col pt-8 text-2xl md:pt-16">
-    <span class="mb-3 text-2xl font-bold text-primary md:text-3xl">
-      Hey there, I'm-
-    </span>
-    <span
-      class="text-contrast text-7xl font-bold leading-[1] md:text-[10rem]"
-    >
-      Eric Hubert.
-    </span>
-
-    <p class="mt-16 gap-2 text-2xl md:mt-24 md:text-3xl">
-      <span class="text-contrast font-bold">Full-stack developer,</span>
-      <span>student, musician, gamer, and all sorts of things.</span>
+<MainLayout title="">
+  <div class="flex max-w-5xl flex-col pt-8 text-2xl md:pt-32 gap-4">
+    <p class="text-lg flex flex-wrap items-center">
+      Hey, I'm Eric, a software engineer based near Paris, France.
     </p>
-    <div class="mt-16 flex gap-2">
-      {
-        socialItems.map(({ href, label, icon, copyEmail }) =>
-          copyEmail ? (
-            <button
-              id="copy-email"
-              class="btn btn-sm text-sm md:h-12 md:min-h-12 md:text-lg"
-            >
-              <Icon name={icon} class="text-base text-primary md:text-2xl" />
-              {label}
-            </button>
-          ) : (
-            <a
-              href={href}
-              class="btn btn-sm text-sm md:h-12 md:min-h-12 md:text-lg"
-            >
-              <Icon name={icon} class="text-base text-primary md:text-2xl" />
-              {label}
-            </a>
-          )
-        )
-      }
-    </div>
-    <div id="toast" class="alert alert-success fixed bottom-8 left-4 z-50 w-auto hidden">
-      <span>Email copied to clipboard!</span>
-    </div>
-    <script>
-      function copyEmail() {
-        navigator.clipboard.writeText("contact@eric.ht");
-        const toast = document.getElementById("toast");
-        toast?.classList.remove("hidden");
-        setTimeout(() => toast?.classList.add("hidden"), 2000);
-      }
-      document.getElementById("copy-email")?.addEventListener("click", copyEmail);
-      document.querySelectorAll(".copy-email").forEach((el) => el.addEventListener("click", copyEmail));
-    </script>
+    <p class="text-lg flex flex-wrap items-center">
+      I mostly do backend work, so if you notice what I'm doing, something
+      probably went wrong.
+    </p>
 
-    <div class="mt-24 flex flex-col gap-4">
-      <h2 class="text-contrast border-l-4 border-l-primary pl-4 font-bold">
-        About me
-      </h2>
-      <p class="text-lg flex flex-wrap items-center">
-        I'm a 19 years old student based near Paris, currently working as an apprentice software engineer for&nbsp;<Icon name="simple-icons:scaleway" class="text-xl ml-1" />&nbsp;Scaleway
-      </p>
-      <p class="text-lg">
-        I love coding, and computer-related things in general. I've been
-        coding since 2016, first by simply editing HTML files in Notepad, then
-        learning Scratch. More recently, I've been learning a few different
-        technologies, playing some CTFs and having fun with my friends!
-      </p>
-      <p class="text-lg">
-        I sometimes make cool things, you can learn more about them on the <a
-          href="/projects"
-          class="underline-offset-3 font-medium underline">projects</a
-        > page.
-      </p>
-      <p class="text-lg">
-        I am also always open to work, feel free to
-        <button
-          class="underline-offset-3 copy-email cursor-pointer font-medium underline"
-        >send me a message</button>!
-      </p>
-    </div>
-
-    <div class="mt-24 flex flex-col gap-6">
-      <h2 class="text-contrast border-l-4 border-l-primary pl-4 font-bold">
-        Tech I use
-      </h2>
-      {
-        skills.map(({ name, items }) => (
-          <div class="flex flex-col gap-3">
-            <h3 class="text-xl">&middot; {name} :</h3>
-            <div class="flex flex-wrap gap-3">
-              {items.map(({ label, icon }) => (
-                <div class="flex items-center gap-2 rounded-lg border border-base-content/10 bg-base-200/40 px-3 py-2 transition-all hover:-translate-y-0.5 hover:border-primary/30">
-                  <Icon name={icon} class="text-3xl" />
-                  <span class="text-base font-medium">{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))
-      }
-    </div>
+    <p class="text-lg flex flex-wrap items-center">
+      Currently working on emails and domains at Scaleway. In my spare time, I'm
+      building ParisGuessr, a collection of minigames about the Paris transport
+      network.
+    </p>
+    <p class="text-lg flex flex-wrap items-center">
+      I like tinkering with electronics and designing PCBs. I also enjoy doing
+      hackathons with my friends, most recently at SNCF Voyageurs on the new TGV M.
+    </p>
+    <p class="text-lg">You can send me an email at <a href="mailto:hey@eric.ht" class="underline underline-offset-2">hey@eric.ht</a>, and find me on <a href="https://github.com/ImLyenx" class="underline underline-offset-2">GitHub</a> and <a href="https://linkedin.com/in/huberic" class="underline underline-offset-2">LinkedIn</a>.</p>
+    <Image src={logo} alt="EH logo" class="mt-4 w-24" />
   </div>
 </MainLayout>

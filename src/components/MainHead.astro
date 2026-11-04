@@ -9,11 +9,11 @@ const {
 <meta name="description" property="og:description" content={description} />
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
-<title>{title + " - Eric"}</title>
+<title>{title + (title ? " - " : "") + "Eric Hubert, Software Engineer"}</title>
 
-<link rel="icon" href="/favicon.ico" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
 <script is:inline>
-  // Prevent FART (Flash of inAccurate coloR Theme)
   if (localStorage.getItem("theme") === null) {
     document.documentElement.setAttribute("data-theme", "winter");
   } else {

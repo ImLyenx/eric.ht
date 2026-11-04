@@ -1,14 +1,48 @@
 @import "tailwindcss";
-
-@plugin "daisyui" {
-  themes: winter --default, night --prefersdark;
-}
 @plugin "@tailwindcss/typography";
+
+/* Geist fonts (SIL OFL 1.1, see src/assets/fonts/Geist-LICENSE.txt) */
+@font-face {
+  font-family: "Geist";
+  src: url("../assets/fonts/Geist-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Serif only ships in a single weight */
+@font-face {
+  font-family: "Geist Serif";
+  src: url("../assets/fonts/GeistSerif-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @custom-variant dark (&:where([data-theme="night"], [data-theme="night"] *));
 
 @theme {
-  --font-sans: "Inter", sans-serif;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Geist Serif", "Times New Roman", Times, serif;
+  --default-font-family: var(--font-serif);
+
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+
+  /* Light theme ("winter") — overridden below for [data-theme="night"] */
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(97.466% 0.011 259.822);
+  --color-base-300: oklch(93.268% 0.016 262.751);
+  --color-base-content: #222e3f;
+  --color-primary: oklch(56.86% 0.255 257.57);
+  --color-primary-content: oklch(91.372% 0.051 257.57);
+  --color-secondary: oklch(42.551% 0.161 282.339);
+  --color-neutral: oklch(19.616% 0.063 257.651);
+  --color-neutral-content: oklch(83.923% 0.012 257.651);
+  --color-success: oklch(80.494% 0.077 197.823);
+  --color-success-content: oklch(16.098% 0.015 197.823);
+  --color-error: oklch(73.092% 0.11 20.076);
+  --color-error-content: oklch(14.618% 0.022 20.076);
 
   --animate-box-shadow: boxshadow 2s ease-in-out 2s;
   --animate-content-fade: fade 0.6s ease;
@@ -24,22 +58,151 @@
   }
 }
 
-/* Theme customizations */
-[data-theme="winter"] {
-  --color-base-content: #222e3f;
+@layer base {
+  :root {
+    color-scheme: light;
+    --logo-image: url("/logowinter.png");
+  }
+
+  [data-theme="night"] {
+    color-scheme: dark;
+    --logo-image: url("/logonight.png");
+    --color-base-100: #0d1221;
+    --color-base-200: oklch(19.314% 0.037 265.754);
+    --color-base-300: oklch(17.86% 0.034 265.754);
+    --color-base-content: oklch(84.153% 0.007 265.754);
+    --color-primary: #5ce18c;
+    --color-primary-content: oklch(15.07% 0.027 232.661);
+    --color-secondary: oklch(68.011% 0.158 276.934);
+    --color-neutral: oklch(27.949% 0.036 260.03);
+    --color-neutral-content: oklch(85.589% 0.007 260.03);
+    --color-success: oklch(78.452% 0.132 181.911);
+    --color-success-content: oklch(15.69% 0.026 181.911);
+    --color-error: oklch(71.785% 0.17 13.118);
+    --color-error-content: oklch(14.357% 0.034 13.118);
+  }
+
+  html {
+    background-color: var(--color-base-100);
+    color: var(--color-base-content);
+  }
 }
 
-[data-theme="night"] {
-  --color-base-100: #0d1221;
-  --color-primary: #5ce18c;
+/* Buttons */
+@utility btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  height: 2.5rem;
+  padding-inline: 1rem;
+  border-radius: var(--radius-field);
+  background-color: var(--color-base-200);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s, color 0.2s;
+  &:hover {
+    background-color: var(--color-base-300);
+  }
+}
+@utility btn-ghost {
+  background-color: transparent;
+  &:hover {
+    background-color: var(--color-base-200);
+  }
+}
+@utility btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-content);
+  &:hover {
+    background-color: color-mix(in oklab, var(--color-primary) 90%, black);
+  }
+}
+@utility btn-sm {
+  height: 2rem;
+  padding-inline: 0.75rem;
+  font-size: 0.75rem;
+}
+@utility btn-square {
+  aspect-ratio: 1;
+  padding-inline: 0;
+}
+@utility btn-disabled {
+  pointer-events: none;
+  background-color: color-mix(in oklab, var(--color-base-content) 10%, transparent);
+  color: color-mix(in oklab, var(--color-base-content) 20%, transparent);
 }
 
-:root {
-  --logo-image: url("/logowinter.png");
+/* Tooltip: <div class="tooltip" data-tip="..."> — shows below the element on hover/focus */
+@utility tooltip {
+  position: relative;
+  display: inline-block;
+  --tip-bg: var(--color-neutral);
+  --tip-fg: var(--color-neutral-content);
+  &::after {
+    content: attr(data-tip);
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 50%;
+    z-index: 10;
+    translate: -50% 0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: var(--tip-bg);
+    color: var(--tip-fg);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s 0.1s;
+  }
+  &:hover::after,
+  &:has(:focus-visible)::after {
+    opacity: 1;
+  }
+}
+@utility tooltip-primary {
+  --tip-bg: var(--color-primary);
+  --tip-fg: var(--color-primary-content);
+}
+@utility tooltip-error {
+  --tip-bg: var(--color-error);
+  --tip-fg: var(--color-error-content);
 }
 
-[data-theme="night"] {
-  --logo-image: url("/logonight.png");
+/* Typography plugin colors follow the theme */
+.prose {
+  --tw-prose-body: color-mix(in oklab, var(--color-base-content) 80%, transparent);
+  --tw-prose-headings: var(--color-base-content);
+  --tw-prose-lead: var(--color-base-content);
+  --tw-prose-links: var(--color-base-content);
+  --tw-prose-bold: var(--color-base-content);
+  --tw-prose-counters: var(--color-base-content);
+  --tw-prose-bullets: color-mix(in oklab, var(--color-base-content) 50%, transparent);
+  --tw-prose-hr: color-mix(in oklab, var(--color-base-content) 20%, transparent);
+  --tw-prose-quotes: var(--color-base-content);
+  --tw-prose-quote-borders: color-mix(in oklab, var(--color-base-content) 20%, transparent);
+  --tw-prose-captions: color-mix(in oklab, var(--color-base-content) 50%, transparent);
+  --tw-prose-code: var(--color-base-content);
+  --tw-prose-pre-code: var(--color-neutral-content);
+  --tw-prose-pre-bg: var(--color-neutral);
+  --tw-prose-th-borders: color-mix(in oklab, var(--color-base-content) 50%, transparent);
+  --tw-prose-td-borders: color-mix(in oklab, var(--color-base-content) 20%, transparent);
+  --tw-prose-kbd: color-mix(in oklab, var(--color-base-content) 80%, transparent);
+
+  & :where(code):not(pre > code) {
+    background-color: var(--color-base-200);
+    border: 1px solid var(--color-base-300);
+    border-radius: 1rem;
+    font-weight: inherit;
+    padding-block: 0.2em;
+    padding-inline: 0.5em;
+  }
 }
 
 .highlight:hover {
