@@ -1,30 +1,55 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
-import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
-import logo from "@/assets/logo.svg";
+import Logo from "@/assets/logo.svg";
 ---
 
 <MainLayout title="">
-  <div class="flex max-w-5xl flex-col pt-8 text-2xl md:pt-32 gap-4">
-    <p class="text-lg flex flex-wrap items-center">
-      Hey, I'm Eric, a software engineer based near Paris, France.
-    </p>
-    <p class="text-lg flex flex-wrap items-center">
+  <div
+    class="flex max-w-5xl flex-col gap-4 text-lg [&_a]:underline [&_a]:underline-offset-2"
+  >
+    <p>Hey, I'm Eric, a software engineer based near Paris, France.</p>
+    <p>
       I mostly do backend work, so if you notice what I'm doing, something
       probably went wrong.
     </p>
-
-    <p class="text-lg flex flex-wrap items-center">
-      Currently working on emails and domains at Scaleway. In my spare time, I'm
-      building ParisGuessr, a collection of minigames about the Paris transport
-      network.
+    <p>
+      Currently working on emails and domains at <a
+        href="https://scaleway.com">Scaleway</a
+      >. In my spare time, I'm
+      building <a href="https://parisguessr.com">ParisGuessr</a>, a collection
+      of minigames about the Paris transit system. Almost 1 million games have
+      been played by over 20,000 players since launch!
     </p>
-    <p class="text-lg flex flex-wrap items-center">
-      I like tinkering with electronics and designing PCBs. I also enjoy doing
-      hackathons with my friends, most recently at SNCF Voyageurs on the new TGV M.
+    <p>
+      I like tinkering with electronics and designing PCBs. One of the projects
+      I've been working on lately is a custom air quality monitoring station.
     </p>
-    <p class="text-lg">You can send me an email at <a href="mailto:hey@eric.ht" class="underline underline-offset-2">hey@eric.ht</a>, and find me on <a href="https://github.com/ImLyenx" class="underline underline-offset-2">GitHub</a> and <a href="https://linkedin.com/in/huberic" class="underline underline-offset-2">LinkedIn</a>.</p>
-    <Image src={logo} alt="EH logo" class="mt-4 w-24" />
+    <p>
+      I also sometimes write about <a href="/blog">my work and thoughts</a>.
+    </p>
+    <p>
+      You can send me an email at <a href="mailto:hey@eric.ht">hey@eric.ht</a><button
+        type="button"
+        class="copy-email cursor-pointer align-super text-sm">[Copy]</button
+      >, and find me on <a href="https://github.com/ImLyenx">GitHub</a> and <a
+        href="https://linkedin.com/in/huberic">LinkedIn</a
+      >.
+    </p>
+    <Logo role="img" aria-label="EH logo" class="mt-4 h-auto w-24" />
   </div>
+  <script>
+    document.querySelectorAll<HTMLButtonElement>(".copy-email").forEach((button) => {
+      let timeout: ReturnType<typeof setTimeout>;
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText("hey@eric.ht");
+          button.textContent = "[Copied!]";
+        } catch {
+          button.textContent = "[Failed]";
+        }
+        clearTimeout(timeout);
+        timeout = setTimeout(() => (button.textContent = "[Copy]"), 2000);
+      });
+    });
+  </script>
 </MainLayout>

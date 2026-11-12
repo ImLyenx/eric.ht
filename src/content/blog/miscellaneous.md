@@ -1,14 +1,6 @@
 ---
 title: Miscellaneous
-tags: [
-    { "name": "PHP", "color": "#797ab2", icon: "simple-icons:php" },
-    { "name": "C#", "color": "#690081", icon: "simple-icons:csharp" },
-    { "name": "Go", "color": "#00ADD8", icon: "simple-icons:go" },
-    { "name": "Unity", "color": "#333333", icon: "simple-icons:unity" },
-    { "name": "MySQL", "color": "#4479A1", icon: "simple-icons:mysql" },
-    { "name": "Discord", "color": "#5865F2", icon: "simple-icons:discord" },
-    { "name": "Slack", "color": "#4A154B", icon: "simple-icons:slack" },
-]
+date: 2024-09-23
 description: All my random little side-projects that are not big enough to fill a whole post.
 github: ImLyenx
 ---

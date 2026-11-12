@@ -11,7 +11,7 @@
             transform="translate(90.92864749319779 11.289931516498427) rotate(0 1.0820496015603567 179.6984580925573)">
             <path
                 d="M-0.93 -0.16 C-0.92 59.84, 0.53 300.64, 0.87 360.69 M0.78 -1.29 C1.1 58.29, 2.62 298.36, 3.09 358.8"
-                stroke="#000000" stroke-width="4" fill="none"></path>
+                stroke="currentColor" stroke-width="4" fill="none"></path>
         </g>
     </g>
     <mask></mask>
@@ -20,7 +20,7 @@
             transform="translate(10.928647493197786 291.2899315164984) rotate(0 180.3451908518009 0.9793802235648172)">
             <path
                 d="M-0.93 0.46 C59.11 0.62, 299.08 0.81, 359.28 0.82 M0.78 -0.35 C61.29 0.02, 301.8 1.97, 361.62 2.31"
-                stroke="#000000" stroke-width="4" fill="none"></path>
+                stroke="currentColor" stroke-width="4" fill="none"></path>
         </g>
     </g>
     <mask></mask>
@@ -29,7 +29,7 @@
             transform="translate(11.643568883089756 192.9004130151868) rotate(0 69.43704449106008 -1.0454070331155663)">
             <path
                 d="M-0.71 -0.1 C22.71 -0.51, 116.26 -1.7, 139.59 -1.99 M1.11 -1.2 C24.48 -1.48, 115.91 -0.75, 138.8 -0.65"
-                stroke="#000000" stroke-width="4" fill="none"></path>
+                stroke="currentColor" stroke-width="4" fill="none"></path>
         </g>
     </g>
     <mask></mask>
@@ -38,7 +38,7 @@
             transform="translate(191.94739841483533 231.65566984742895) rotate(0 -0.8593628046291997 69.60563490979371)">
             <path
                 d="M0.3 -0.38 C0.25 22.87, -0.73 116.1, -1.05 139.41 M-1 -1.62 C-1.15 21.82, -1.72 117.1, -2.02 140.84"
-                stroke="#000000" stroke-width="4" fill="none"></path>
+                stroke="currentColor" stroke-width="4" fill="none"></path>
         </g>
     </g>
     <mask></mask>
@@ -47,7 +47,7 @@
             transform="translate(292.55444941690075 372.65459060343005) rotate(0 -1.6201173600829861 -91.49848225065523)">
             <path
                 d="M-0.04 -0.22 C-0.62 -30.62, -2.84 -152.47, -3.2 -182.78 M-1.51 -1.38 C-1.73 -31.55, -0.61 -150.85, -0.83 -181.3"
-                stroke="#000000" stroke-width="4" fill="none"></path>
+                stroke="currentColor" stroke-width="4" fill="none"></path>
         </g>
     </g>
     <mask></mask>
@@ -56,7 +56,7 @@
             transform="translate(10.928647493197786 91.28993151649843) rotate(0 89.37046396303958 -1.3168543256995235)">
             <path
                 d="M-0.65 -0.12 C29.25 -0.2, 149.52 -0.44, 179.39 -0.69 M1.21 -1.23 C30.99 -1.64, 149.22 -2.62, 178.61 -2.5"
-                stroke="#000000" stroke-width="4" fill="none"></path>
+                stroke="currentColor" stroke-width="4" fill="none"></path>
         </g>
     </g>
     <mask></mask>

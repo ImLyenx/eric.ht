@@ -1,6 +1,6 @@
 ---
 const {
-  title = "Default",
+  title = "",
   description = "Eric Hubert — Software Engineer",
 } = Astro.props;
 ---
@@ -13,13 +13,36 @@ const {
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="32x32" />
+
+<!-- Inline and blocking so the saved theme applies before first paint -->
 <script is:inline>
-  if (localStorage.getItem("theme") === null) {
-    document.documentElement.setAttribute("data-theme", "winter");
-  } else {
-    document.documentElement.setAttribute(
-      "data-theme",
-      localStorage.getItem("theme"),
-    );
-  }
+  (() => {
+    const KEY = "theme";
+    const apply = (theme) => {
+      if (theme === "light" || theme === "dark") {
+        document.documentElement.dataset.theme = theme;
+      } else {
+        delete document.documentElement.dataset.theme;
+      }
+    };
+
+    try {
+      apply(localStorage.getItem(KEY));
+    } catch {}
+
+    /**
+     * Sets the site theme and remembers it.
+     * @param {"light" | "dark" | "system"} theme "system" follows the OS setting.
+     */
+    window.setTheme = (theme) => {
+      apply(theme);
+      try {
+        if (theme === "light" || theme === "dark") {
+          localStorage.setItem(KEY, theme);
+        } else {
+          localStorage.removeItem(KEY);
+        }
+      } catch {}
+    };
+  })();
 </script>

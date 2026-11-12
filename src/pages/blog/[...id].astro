@@ -1,0 +1,61 @@
+---
+import { getCollection, render } from "astro:content";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { formatDate } from "@/utils/date";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("blog");
+  return entries.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { title, description, date, github, demo } = entry.data;
+const { Content } = await render(entry);
+---
+
+<MainLayout
+  title={title}
+  description={description}
+  back="/blog"
+>
+  <article class="max-w-2xl">
+    <header class="mb-6">
+      <h1 class="text-lg">{title}</h1>
+      <p class="text-lg text-muted">
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        {
+          github && (
+            <>
+              {" · "}
+              <a
+                href={`https://github.com/${github}`}
+                class="underline underline-offset-2 hover:text-base-content"
+              >
+                source
+              </a>
+            </>
+          )
+        }
+        {
+          demo && (
+            <>
+              {" · "}
+              <a
+                href={demo}
+                class="underline underline-offset-2 hover:text-base-content"
+              >
+                live
+              </a>
+            </>
+          )
+        }
+      </p>
+    </header>
+    <div class="prose prose-lg">
+      <Content />
+    </div>
+  </article>
+</MainLayout>

@@ -1,14 +1,6 @@
 ---
 title: My Portfolio
-tags:
-  [
-    { "name": "Astro", "color": "#e54097", icon: "simple-icons:astro" },
-    {
-      "name": "Tailwind CSS",
-      "color": "#38bdf8",
-      icon: "simple-icons:tailwindcss",
-    },
-  ]
+date: 2024-09-18
 description: The website you're on right now, with information about me and my projects
 demo: https://eric.ht
 ---

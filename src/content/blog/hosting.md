@@ -1,10 +1,6 @@
 ---
 title: Hosting my projects
-tags:
-  [
-    { "name": "Linux", "color": "#eebd1b", icon: "simple-icons:linux" },
-    { "name": "Coolify", "color": "#8c52ff", icon: "simple-icons:c" },
-  ]
+date: 2024-09-19
 description: The Server™
 ---
 

@@ -1,16 +1,6 @@
 ---
 title: Mistral Chat
-tags:
-  [
-    { "name": "Mistral AI", "color": "#ffab03", icon: "logos:mistral-ai-icon" },
-    { "name": "Next.js", "color": "#000000", icon: "simple-icons:nextdotjs" },
-    { "name": "React", "color": "#06bfef", icon: "simple-icons:react" },
-    {
-      "name": "Tailwind CSS",
-      "color": "#38bdf8",
-      icon: "simple-icons:tailwindcss",
-    },
-  ]
+date: 2025-02-28
 description: A lightweight and minimalist web UI for the Mistral AI API.
 github: ImLyenx/mistral-chat
 ---

@@ -1,16 +1,6 @@
 ---
 title: ParisGuessr
-tags:
-  [
-    { "name": "Go", "color": "#00ADD8", icon: "simple-icons:go" },
-    { "name": "Vite", "color": "#ffab03", icon: "simple-icons:vite" },
-    { "name": "React", "color": "#06bfef", icon: "simple-icons:react" },
-    {
-      "name": "Tailwind CSS",
-      "color": "#38bdf8",
-      icon: "simple-icons:tailwindcss",
-    },
-  ]
+date: 2026-03-31
 description: A collection of minigames based on the Paris public transport network.
 demo: https://parisguessr.com
 ---

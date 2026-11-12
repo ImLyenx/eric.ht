@@ -1,22 +1,42 @@
 ---
 import MainHead from "@/components/MainHead.astro";
-import Footer from "@/components/Footer.astro";
 
 import "@/styles/global.css";
 
-const { title } = Astro.props;
+interface Props {
+  title: string;
+  description?: string;
+  /** Where the "go back" link goes. Defaults to the homepage; hidden on it. */
+  back?: string;
+}
+
+const { title, description, back = "/" } = Astro.props;
+const isHome = Astro.url.pathname === "/";
 ---
 
 <html lang="en">
   <head>
-    <MainHead title={title} />
+    <MainHead title={title} description={description} />
   </head>
-  <body class="relative mx-6 flex min-h-screen flex-col items-center">
-    <div class="w-full max-w-5xl flex-grow">
-      <div class="animate-content-fade pb-32 md:pb-28">
+  <body class="mx-6 flex min-h-screen flex-col items-center">
+    <div
+      class:list={[
+        "w-full max-w-5xl flex-grow pt-8 pb-16",
+        isHome ? "md:pt-32" : "md:pt-16",
+      ]}
+    >
+      {
+        !isHome && (
+          <nav class="mb-4 text-lg">
+            <a href={back} class="underline underline-offset-2">
+              go back
+            </a>
+          </nav>
+        )
+      }
+      <main class="motion-safe:animate-content-fade">
         <slot />
-      </div>
+      </main>
     </div>
-    <Footer />
   </body>
 </html>

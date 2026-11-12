@@ -1,0 +1,23 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+
+const entries = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<MainLayout title="Blog" description="Posts and projects by Eric Hubert">
+  <ul class="flex flex-col gap-1 text-lg">
+    {
+      entries.map((entry) => (
+        <li>
+          <a href={`/blog/${entry.id}`} class="underline underline-offset-2">
+            {entry.data.title}
+          </a>
+          , {entry.data.date.getUTCFullYear()}
+        </li>
+      ))
+    }
+  </ul>
+</MainLayout>
